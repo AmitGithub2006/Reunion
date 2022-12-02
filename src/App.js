@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 
 import Header from './components/Header/Header';
@@ -8,12 +9,13 @@ import Body from "./components/Body/Body";
 
 
 function App() {
+  const [favo, setFavo] = useState([]);
   return (
     <>
       <BrowserRouter>
     <Header />
         <Routes>
-          <Route path="/" element={<Body />}>
+          <Route path="/" element={<Body favo={favo} setFavo={setFavo} />}>
             Header
           </Route>
           <Route path="/Buy" element={<Buy />}>
@@ -22,7 +24,7 @@ function App() {
           <Route path="/Sell" element={<Sell />}>
             Sell
           </Route>
-          <Route path="/Favourites" element={<Favourites />}>
+          <Route path="/Favourites" element={<Favourites favo={favo} />}>
             Favourites
           </Route>
         </Routes>

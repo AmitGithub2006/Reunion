@@ -1,9 +1,29 @@
-import React from 'react'
+import React from 'react';
+import Card from '../../Body/Card';
 
-function Favourites() {
+import "./Favourites.css";
+
+function Favourites({favo}) {
   return (
-    <div>Hi favourites</div>
-  )
+    // Returning favourite cards
+    <>
+      <div className='favo-cards'>
+        {favo?.map(({ name, location, beds, bathrooms, price, area, img }) => (
+          <div className="favo-card">
+            <Card
+              name={name}
+              location={location}
+              beds={beds}
+              bathrooms={bathrooms}
+              price={price}
+              area={area}
+              img={img}
+            />
+          </div>
+        ))}
+      </div>
+    </>
+  );
 }
 
-export default Favourites
+export default Favourites;

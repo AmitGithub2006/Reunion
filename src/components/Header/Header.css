@@ -1,4 +1,11 @@
-header {
+:root {
+  --main-color: rgb(82, 76, 76);
+}
+
+/* Styling of header starts here */
+
+.header {
+  width: 100%;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -6,11 +13,19 @@ header {
   font-weight: 700;
   box-shadow: 0px 5px 5px rgb(201, 200, 200);
   margin-bottom: 20px;
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  background-color: white;
+}
+
+.main-logo {
+  font-size: 1.2rem;
 }
 
 #home-logo {
-    font-size: 2rem;
-    color: rgb(94, 74, 67);
+  font-size: 2rem;
+  color: var(--main-color);
 }
 
 .main-logo,
@@ -21,7 +36,44 @@ header {
 }
 
 .link {
-    margin-right: 30px;
-    text-decoration: none;
-    color: black;
+  margin-right: 30px;
+  text-decoration: none;
+  color: black;
+}
+
+#favourites {
+  margin-right: 0px;
+}
+
+#nav-dropdown-dark-example:hover {
+  color: rgb(55, 55, 158);
+}
+
+.login-btn, .signup-btn {
+  outline: none;
+  border-radius: 5px;
+  padding: 5px;
+  border: 2px solid var(--main-color);
+  color: var(--main-color);
+  font-weight: 600;
+  margin-right: 5px;
+}
+
+.login-btn {
+  background-color: white;
+}
+
+.login-btn:hover {
+  color: white;
+  background-color: var(--main-color);
+}
+
+.signup-btn {
+  color: white;
+  background-color: var(--main-color);
+}
+
+.signup-btn:hover {
+  color: var(--main-color);
+  background-color: white;
 }

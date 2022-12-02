@@ -1,0 +1,6 @@
+.favo-cards {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    margin: 50px 100px;
+}

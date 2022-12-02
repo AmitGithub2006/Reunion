@@ -2,13 +2,13 @@ import React from "react";
 import { Link } from "react-router-dom";
 import { AiTwotoneHome } from "react-icons/ai";
 import NavDropdown from "react-bootstrap/NavDropdown";
-import Button from "react-bootstrap/Button";
 
 import "./Header.css";
 
 function Header() {
   return (
-    <header>
+    // Returning different components using Link
+    <header className="header">
       <div className="left-head">
         <div className="main-logo">
           <AiTwotoneHome id="home-logo" />
@@ -27,7 +27,7 @@ function Header() {
             Sell
           </Link>
 
-          <Link to="/Favourites" className="link">
+          <Link to="/Favourites" className="link" id="favourites">
             Favourites
           </Link>
         </div>
@@ -65,9 +65,8 @@ function Header() {
         </div>
       </div>
       <div className="right-head">
-        <Button variant="outline-primary">Login</Button>
-        {" "}
-        <Button variant="primary">Signup</Button>
+        <button className="login-btn">Login</button>
+        <button className="signup-btn">Signup</button>
       </div>
     </header>
   );
