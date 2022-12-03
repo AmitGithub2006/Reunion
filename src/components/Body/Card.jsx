@@ -15,8 +15,8 @@ function Cards({
   price,
   area,
   img,
-  favo,
-  setFavo,
+  favourite,
+  setFavourite,
   isFav,
 }) {
 
@@ -34,26 +34,26 @@ function Cards({
     <>
     {/* Returning the card individually */}
       <div className="cards" key={name}>
-        <Card style={{ width: "18rem" }} className="card">
+        <Card style={{ width: "18rem" }} className="card"> 
           <Card.Img id="img" variant="top" src={img} />
           <Card.Body>
-            <div className="rent-fovo">
+            <div className="rent-div">
               <div>
                 <span className="rent">${price}</span>
                 <span className="per-month">/month</span>
               </div>
-              {isFav ? (
+              {isFav && (
                 <span
                   id="favorite"
                   onClick={() => {
-                    setFavo([...favo, cardDetails]);
+                    setFavourite([...favourite, cardDetails]);
                   }}
                 >
                   <span id="heart">
                     <GrFavorite />
                   </span>
                 </span>
-              ) : null}
+              )}
             </div>
             <Card.Title>{name}</Card.Title>
             <Card.Text>{location}</Card.Text>

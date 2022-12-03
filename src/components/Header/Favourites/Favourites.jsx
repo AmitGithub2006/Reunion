@@ -1,14 +1,15 @@
 import React from 'react';
+
 import Card from '../../Body/Card';
 
 import "./Favourites.css";
 
-function Favourites({favo}) {
+function Favourites({favourite}) {
   return (
     // Returning favourite cards
     <>
       <div className='favo-cards'>
-        {favo?.map(({ name, location, beds, bathrooms, price, area, img }) => (
+        {favourite?.map(({ name, location, beds, bathrooms, price, area, img }) => (
           <div className="favo-card">
             <Card
               name={name}

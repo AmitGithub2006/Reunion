@@ -1,10 +1,11 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
+
 import Card from "./Card";
 
 import "./Body.css";
 
-function Body({ favo, setFavo }) {
+function Body({ favourite, setFavourite }) {
   // Passing states to filter the cards
   const [data, setData] = useState([]);
   const [search, setSearch] = useState([]);
@@ -19,11 +20,10 @@ function Body({ favo, setFavo }) {
 
   // Main code starts here
 
-  // Fetching the data from API
+  // Fetching the data from json file
   useEffect(() => {
-    axios.get(`https://frozen-harbor-02472.herokuapp.com/oyo`).then((res) => {
-      console.log(res.data);
-      setData(...[res.data]);
+    axios.get("db.json").then((res) => {
+      setData([...res.data]);
       setSearch(res.data);
     });
   }, []);
@@ -32,7 +32,6 @@ function Body({ favo, setFavo }) {
 
   const handleSearch = () => {
     let splitRent = searched.price.split("-");
-    console.log(searched);
     const filterCard = search.filter((value) => {
       let myDate = new Date(searched.date).getTime();
       let enteredDate = new Date(value.date).getTime();
@@ -51,29 +50,31 @@ function Body({ favo, setFavo }) {
       }
     });
     setData(filterCard);
-    console.log(filterCard);
   };
 
   // Fetching the value
 
   const handleFilter = (e) => {
-    const value = e.target.value;
     setSearched({
       ...searched,
-      [e.target.name]: value,
+      [e.target.name]: e.target.value,
     });
+  };
+
+  const handleFilterChange = (e) => {
+    setFilter(e.target.value);
   };
 
   return (
     <>
-    {/* Section to filter cards on search */}
+      {/* Section to filter cards on search */}
       <section className="section flex">
         <h2 id="heading">Search properties to rent</h2>
         <input
           type="text"
           id="search-properties"
           name="search"
-          onChange={(e) => setFilter(e.target.value)}
+          onChange={handleFilterChange}
           placeholder="Search property by name..."
         />
       </section>
@@ -140,34 +141,35 @@ function Body({ favo, setFavo }) {
         </div>
       </div>
       <div className="container flex">
-        {data.filter((val) => {
-                if (filter === "") {
-                  return val;
-                } else if (
-                  val.name.toLowerCase().includes(filter.toLowerCase())
-                ) {
-                  return val;
-                }
-              }).map(
-          ({ name, location, beds, bathrooms, price, area, img, date }) => (
-            <div className="cont">
-              <Card
-                name={name}
-                location={location}
-                area={area}
-                beds={beds}
-                bathrooms={bathrooms}
-                price={price}
-                size={area}
-                img={img}
-                date={date}
-                setFavo={setFavo}
-                favo={favo}
-                isFav={true}
-              />
-            </div>
-          )
-        )}
+        {data
+          .filter((val) => {
+            if (filter === "") {
+              return val;
+            } else if (val.name.toLowerCase().includes(filter.toLowerCase())) {
+              return val;
+            }
+          })
+          .map(
+            ({ id, name, location, beds, bathrooms, price, area, img, date }) => (
+              <div key={id}>
+                <Card
+                  id={id}
+                  name={name}
+                  location={location}
+                  area={area}
+                  beds={beds}
+                  bathrooms={bathrooms}
+                  price={price}
+                  size={area}
+                  img={img}
+                  date={date}
+                  setFavourite={setFavourite}
+                  favourite={favourite}
+                  isFav
+                />
+              </div>
+            )
+          )}
       </div>
     </>
   );

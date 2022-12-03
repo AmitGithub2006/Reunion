@@ -9,13 +9,13 @@ import Body from "./components/Body/Body";
 
 
 function App() {
-  const [favo, setFavo] = useState([]);
+  const [favourite, setFavourite] = useState([]);
   return (
     <>
       <BrowserRouter>
     <Header />
         <Routes>
-          <Route path="/" element={<Body favo={favo} setFavo={setFavo} />}>
+          <Route path="/" element={<Body favourite={favourite} setFavourite={setFavourite} />}>
             Header
           </Route>
           <Route path="/Buy" element={<Buy />}>
@@ -24,7 +24,7 @@ function App() {
           <Route path="/Sell" element={<Sell />}>
             Sell
           </Route>
-          <Route path="/Favourites" element={<Favourites favo={favo} />}>
+          <Route path="/Favourites" element={<Favourites favourite={favourite} />}>
             Favourites
           </Route>
         </Routes>
